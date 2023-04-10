@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Form validation</title>
+    <h1>COURSE REGISTRATION</h1>
+    <style>
+        form{
+            text-align: center;
+            text-shadow: aqua;
+            background-color: lightcoral;
+        }
+        input{
+            font-style: italic;
+            background-color: blueviolet;
+            color: darkorange;
+        }
+        label{
+            font-style: italic;
+            text-shadow: chocolate;
+        }
+        body{
+            background-color: lightblue;
+        }
+    </style>
+    <script>
+        function validate()
+        {
+            var a = document.myform.name.value;
+            if(a=="")
+            {
+                alert("please, Enter your name!!!");
+                document.myform.name.focus();
+                return false;
+            }
+            if(!isNaN(a))
+            {
+                alert("please Enter only characters");
+                document.myform.name.select();
+                return false;
+            }
+            if (/^[0-9a-zA-Z]+$/.test(a)) {
+                alert('name can only contain alphabet characters');
+                return false;
+            }
+            if (/[^a-zA-Z0-9\-\/]/.test(a)) {
+                alert('name can only contain alphabet characters');
+                return false;
+            }
+            var d = document.myform.mail.value;
+            if(d == "")
+            {
+                alert("please, Enter your mail id!!!");
+                document.myform.mail.focus();
+                return false;
+            }
+            var atposition = d.indexOf("@");
+            var dotposition = d.lastIndexOf(".");
+            if(atposition<1 || dotposition<atposition+2 || dotposition+2>=d.length)
+                {
+                    alert("Enter valid mail address!");
+                return false;                
+            }
+            var p = document.myform.password.value;
+            if(p == "")
+            {
+                alert("Enter your password");
+                document.myform.password.focus();
+                return false;
+            }
+            if(p.length<6)
+                {
+                    alert("please enter below 6 keys!");
+                    document.myform.password.focus();
+                    return false;
+                }
+            var cp = document.myform.cpass.value;
+            if(cp == "")
+            {
+                alert("please, Enter your password!!!");
+                document.myform.cpassword.focus();
+                return false;
+            }
+            if(p != cp)
+            {
+                alert("Password not matched please enter correct one!");
+                document.myform.cpassword.focus();
+                return false;
+            }
+
+            var m = document.myform.phno.value;
+            if(m =="")
+            {
+                alert("please, Enter your moblie number!!!");
+                document.myform.phno.focus();
+                return false;
+            }
+            else if(m.length<10 || m.length>10)
+                {
+                    alert("please enter only 10 digits!");
+                    document.myform.phno.focus();
+                    return false;
+                }
+            var n = document.myform.nation.value;
+            if(n=="")
+            {
+                alert("please, Enter your name!!!");
+                document.myform.nation.focus();
+                return false;
+            }
+            if(!isNaN(n))
+            {
+                alert("please Enter only characters");
+                document.myform.nation.select();
+                return false;
+            }
+
+            var g = document.myform.gender;
+            var status =0;
+            for(var i=0;i<g.length;i++)
+            {
+                if(g[i].checked==true){
+                    status=1;
+                }
+            }
+            if(status==0)
+            {
+                alert("select gender");
+                return false;
+            }
+
+            var interest = document.myform.course;
+            if(interest.selectedIndex==0)
+            {
+                alert("select your course");
+                document.myform.course.focus();
+                return false;
+            }
+            var deprt = document.myform.department;
+            if(deprt.selectedIndex==0)
+            {
+                alert("select your course");
+                document.myform.department.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    </head>
+    <body>
+        <form action="for " name="myform" onsubmit="return validate()">
+            <label for="name">Name : </label>
+            <input type="text" id="name"><br><br>
+            <label for="mail">Email : </label>
+            <input type="email" id="mail"><br><br>
+            <label for="phno">Phone no : </label>
+            <input type="tel" id="phno"><br><br>
+            <label for="nation">Nation </label>
+            <input type="text" id="nation"><br><br>
+            <label for="gender">Gender :</label>
+            <button type="radio" value="male" id="gender">Male</button>
+            <button type="radio" value="female" id="gender">Female</button>
+            <button type="radio" value="other" id="gender">other</button><br><br>
+            <label for="address">Address :</label>
+            <input type="address" id="address"><br><br>
+            <label for="password">password : </label>
+            <input type="password" id="password"><br><br>
+            <label for="cpassword">confirm password : </label>
+            <input type="password" id="cpassword"><br><br>
+            <label for="department">Department : </label>
+            <select type="text" name="department" id="department">
+                <option></option>
+                <option value="CSE">CSE</option>
+                <option value="IT">IT</option>
+                <option value="AIML">AIML</option>
+                <option value="AIDS">AIDS</option>
+            </select><br><br>
+            <label for="course">Select course:</label>
+            <select type="text" name="course" id="course"> 
+                <option></option>
+                <option value="C">C</option>
+                <option value="C++">C++</option>
+                <option value="Python">Python</option>
+                <option value="HTML">HTML</option>
+                <option value="R">R</option>
+            </select><br><br>
+            <label for="dob">Date of Birth : </label>
+            <input type="datetime" id="dob"><br><br>
+            <input type="submit" id="sub" name="sub">
+        </form>
+    </body>
+</html>
